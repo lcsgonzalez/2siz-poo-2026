@@ -1,12 +1,31 @@
+import java.util.ArrayList;
+
 public class Aluno {
     private String nome;
     private String cpf;
     private int numeroMatricula;
+    private Plano plano;
+    private ArrayList<Treino> treinos;
 
     public Aluno(String nome, String cpf, int numeroMatricula) {
         this.nome = nome;
         this.cpf = cpf;
         this.numeroMatricula = numeroMatricula;
+    }
+
+    public Aluno(String nome, String cpf, int numeroMatricula, Plano plano) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.numeroMatricula = numeroMatricula;
+        this.plano = plano;
+    }
+
+    public Aluno(String nome, String cpf, int numeroMatricula, Plano plano, ArrayList<Treino> treinos) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.numeroMatricula = numeroMatricula;
+        this.plano = plano;
+        this.treinos = treinos;
     }
 
     public Aluno() {
@@ -36,12 +55,30 @@ public class Aluno {
         this.numeroMatricula = numeroMatricula;
     }
 
+    public Plano getPlano() {
+        return plano;
+    }
+
+    public void setPlano(Plano plano) {
+        this.plano = plano;
+    }
+
+    public ArrayList<Treino> getTreinos() {
+        return treinos;
+    }
+
+    public void setTreinos(ArrayList<Treino> treinos) {
+        this.treinos = treinos;
+    }
+
     @Override
     public String toString() {
         return "Aluno{" +
                 "nome='" + nome + '\'' +
                 ", cpf='" + cpf + '\'' +
                 ", numeroMatricula=" + numeroMatricula +
+                ", plano=" + plano +
+                ", treinos=" + treinos +
                 '}';
     }
 }
