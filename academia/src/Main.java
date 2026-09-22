@@ -1,8 +1,10 @@
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
+    static ArrayList<Exercicio> listaExercicios = new ArrayList<>();
 
     public static void menuCrud(String entidade) {
         while (true) {
@@ -29,57 +31,83 @@ public class Main {
 //               case "34" -> excluirTreino();
                 case "41" -> cadastrarExercicio();
 //               case "42" -> atualizarExercicio();
-//               case "43" -> visualizarExercicio();
-//               case "44" -> excluirExercicio();
+                case "43" -> visualizarExercicio();
+                case "44" -> excluirExercicio();
                 default -> System.out.println("Opção inválida");
             }
         }
     }
 
+    public static String lerValidarEntradas(String prompt, String regex, String mensagemErro) {
+        while (true) {
+            System.out.println(prompt);
+            String valor = scanner.nextLine();
+            if (valor.matches(regex)) return valor;
+            System.out.println(mensagemErro);
+        }
+    }
+
     public static void cadastrarExercicio() {
-        String nome;
-        int quantidadeSeries;
-        int numeroRepeticoes;
-        String carga;
+        String nome = lerValidarEntradas(
+                "Digite o nome do exercício: ",
+                "[\\p{L}\\p{N}]+",
+                "O nome do exercício só pode conter letras e números");
+        int quantidadeSeries = Integer.parseInt(lerValidarEntradas(
+                "Digite a quantidade de séries: ",
+                "\\d+",
+                "Você deve informar um número inteiro"));
+        int numeroRepeticoes = Integer.parseInt(lerValidarEntradas(
+                "Digite a quantidade de repetições: ",
+                "\\d+",
+                "Você deve informar um número inteiro"));
+        String carga = lerValidarEntradas(
+                "Digite a carga: ",
+                ".*\\d.*",
+                "A carga deve conter um número");
 
-        while (true) {
-            System.out.println("Digite o nome do exercício: ");
-            nome = scanner.nextLine();
-            if (nome.isBlank() || nome.isEmpty()) {
-            } else {
-                break;
-            }
-        }
-        while (true) {
-            System.out.println("Digite a quantidade de séries");
-            String series = scanner.nextLine();
-            if (series.matches("[0-9]+")) {
-                quantidadeSeries = Integer.parseInt(series);
-                break;
-            } else {
-                System.out.println("A quantidade de séries deve ser um número!");
-            }
-        }
-        while (true) {
-            System.out.println("Digite o número de repetições");
-            String repeticoes = scanner.nextLine();
-            if (repeticoes.matches("[0-9]+")) {
-                numeroRepeticoes = Integer.parseInt(repeticoes);
-                break;
-            } else {
-                System.out.println("O número de repetições deve ser um número!");
-            }
-        }
-        while (true) {
-            System.out.println("Digite a carga");
-            carga = scanner.nextLine();
-            if (carga.matches(".*\\d.*")) {
-                break;
-            } else {
-                System.out.println("A carga deve conter um número!");
-            }
+        Exercicio exercicio = new Exercicio(nome, quantidadeSeries, numeroRepeticoes, carga);
+        listaExercicios.add(exercicio);
+        System.out.println("Exercício cadastrado com sucesso!");
+    }
 
-            System.out.println("Exercício cadastrado com sucesso!");
+    public static void visualizarExercicio() {
+        if (listaExercicios.isEmpty()) {
+            System.out.println("Não há exercícios cadastrados!");
+            return;
+        }
+        for (Exercicio exercicio : listaExercicios) {
+            System.out.println(exercicio);
+        }
+    }
+
+    public static void indexarExercicio() {
+        if (listaExercicios.isEmpty()) {
+            System.out.println("Não há exercícios cadastrados!");
+            return;
+        }
+        for (int i=0;i<listaExercicios.size();i++) {
+            System.out.println(i+1 + ". " + listaExercicios.get(i));
+        }
+    }
+
+    public static void excluirExercicio(){
+        indexarExercicio();
+        int indiceExcluir = Integer.parseInt(lerValidarEntradas(
+                "Digite o número do exercício que deseja excluir: ",
+                "[1,"+String.valueOf(listaExercicios.size())+"]",
+                "Número inválido!"
+        ));
+        indiceExcluir--;
+
+        String confirma = lerValidarEntradas(
+                "Deseja realmente excluir "+listaExercicios.get(indiceExcluir)+"? (S/N)",
+                "[SNsn]",
+                "Por favor digite somente S para sim ou N para não"
+        );
+
+        if(confirma.toLowerCase().equals("s")) {
+            listaExercicios.remove(indiceExcluir);
+            System.out.println("Exercício removido com sucesso!");
         }
     }
 

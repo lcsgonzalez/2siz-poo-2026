@@ -48,11 +48,9 @@ public class Exercicio {
 
     @Override
     public String toString() {
-        return "Exercicio{" +
-                "nome='" + nome + '\'' +
-                ", quantidadeSeries=" + quantidadeSeries +
-                ", numeroRepeticoes=" + numeroRepeticoes +
-                ", carga='" + carga + '\'' +
-                '}';
+        return nome + " " +
+                 + quantidadeSeries +
+                " x " + numeroRepeticoes +
+                " com " + carga + "kg";
     }
 }
