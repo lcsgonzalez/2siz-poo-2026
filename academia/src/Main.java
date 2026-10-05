@@ -1,4 +1,3 @@
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -29,10 +28,14 @@ public class Main {
 //               case "32" -> atualizarTreino();
 //               case "33" -> visualizarTreino();
 //               case "34" -> excluirTreino();
-                case "41" -> cadastrarExercicio();
+                case "41" -> cadastrarExercicioMusculacao();
 //               case "42" -> atualizarExercicio();
                 case "43" -> visualizarExercicio();
                 case "44" -> excluirExercicio();
+                case "51" -> cadastrarExercicioCardio();
+//               case "52" -> atualizarExercicio();
+                case "53" -> visualizarExercicio();
+                case "54" -> excluirExercicio();
                 default -> System.out.println("Opção inválida");
             }
         }
@@ -47,7 +50,9 @@ public class Main {
         }
     }
 
-    public static void cadastrarExercicio() {
+    public static void cadastrarExercicioCardio() {}
+
+    public static void cadastrarExercicioMusculacao() {
         String nome = lerValidarEntradas(
                 "Digite o nome do exercício: ",
                 "[\\p{L}\\p{N}]+",
@@ -60,12 +65,12 @@ public class Main {
                 "Digite a quantidade de repetições: ",
                 "\\d+",
                 "Você deve informar um número inteiro"));
-        String carga = lerValidarEntradas(
+        double carga = Double.parseDouble(lerValidarEntradas(
                 "Digite a carga: ",
-                ".*\\d.*",
-                "A carga deve conter um número");
+                "\\d+(\\.\\d+)?",
+                "A carga deve ser um número decimal"));
 
-        Exercicio exercicio = new Exercicio(nome, quantidadeSeries, numeroRepeticoes, carga);
+        ExercicioMusculacao exercicio = new ExercicioMusculacao(nome, quantidadeSeries, numeroRepeticoes, carga);
         listaExercicios.add(exercicio);
         System.out.println("Exercício cadastrado com sucesso!");
     }
@@ -76,7 +81,7 @@ public class Main {
             return;
         }
         for (Exercicio exercicio : listaExercicios) {
-            System.out.println(exercicio);
+            exercicio.executar();
         }
     }
 
@@ -94,7 +99,7 @@ public class Main {
         indexarExercicio();
         int indiceExcluir = Integer.parseInt(lerValidarEntradas(
                 "Digite o número do exercício que deseja excluir: ",
-                "[1,"+String.valueOf(listaExercicios.size())+"]",
+                "[1-"+String.valueOf(listaExercicios.size())+"]",
                 "Número inválido!"
         ));
         indiceExcluir--;
@@ -133,13 +138,14 @@ public class Main {
                     1. Aluno
                     2. Plano
                     3. Treino
-                    4. Exercícios              
+                    4. Exercícios Musculação
+                    5. Exercício Cardio                
                     
                     Digite o número da opção desejada:""");
 
             opcao = scanner.nextLine();
 
-            if (opcao.matches("[1-4]")) {
+            if (opcao.matches("[1-5]")) {
                 menuCrud(opcao);
             } else {
                 System.out.println("Opção inválida!");
