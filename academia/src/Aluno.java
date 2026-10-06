@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Aluno {
     private String nome;
     private String cpf;
-    private int numeroMatricula;
+    private final int numeroMatricula;
     private Plano plano;
     private ArrayList<Treino> treinos;
 
@@ -28,14 +28,11 @@ public class Aluno {
         this.treinos = treinos;
     }
 
-    public Aluno() {
-    }
-
     public String getNome(){
         return nome;
     }
 
-    public void setNome(String nome){
+    public final void setNome(String nome){
         this.nome = nome;
     }
 
@@ -43,7 +40,7 @@ public class Aluno {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    public final void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -51,15 +48,11 @@ public class Aluno {
         return numeroMatricula;
     }
 
-    public void setNumeroMatricula(int numeroMatricula) {
-        this.numeroMatricula = numeroMatricula;
-    }
-
     public Plano getPlano() {
         return plano;
     }
 
-    public void setPlano(Plano plano) {
+    public final void setPlano(Plano plano) {
         this.plano = plano;
     }
 
@@ -67,7 +60,7 @@ public class Aluno {
         return treinos;
     }
 
-    public void setTreinos(ArrayList<Treino> treinos) {
+    public final void setTreinos(ArrayList<Treino> treinos) {
         this.treinos = treinos;
     }
 

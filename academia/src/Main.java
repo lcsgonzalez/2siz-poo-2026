@@ -29,11 +29,11 @@ public class Main {
 //               case "33" -> visualizarTreino();
 //               case "34" -> excluirTreino();
                 case "41" -> cadastrarExercicioMusculacao();
-//               case "42" -> atualizarExercicio();
+//               case "42" -> atualizarExercicioMusculacao();
                 case "43" -> visualizarExercicio();
                 case "44" -> excluirExercicio();
                 case "51" -> cadastrarExercicioCardio();
-//               case "52" -> atualizarExercicio();
+//               case "52" -> atualizarExercicioCardio();
                 case "53" -> visualizarExercicio();
                 case "54" -> excluirExercicio();
                 default -> System.out.println("Opção inválida");
