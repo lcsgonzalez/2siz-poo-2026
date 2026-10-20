@@ -1,4 +1,4 @@
-public class ExercicioMusculacao extends Exercicio{
+public class ExercicioMusculacao extends Exercicio {
     private int quantidadeSeries;
     private int numeroRepeticoes;
     private double carga;
@@ -42,5 +42,10 @@ public class ExercicioMusculacao extends Exercicio{
                     getNumeroRepeticoes() + " repetições com " +
                     getCarga() + " kg"
         );
+    }
+
+    @Override
+    public void exibirDetalhes() {
+        executar();
     }
 }

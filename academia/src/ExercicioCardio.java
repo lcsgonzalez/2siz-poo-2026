@@ -1,6 +1,6 @@
 import java.time.LocalTime;
 
-public class ExercicioCardio extends Exercicio{
+public class ExercicioCardio extends Exercicio {
     private double velocidade;
     private LocalTime tempo;
     private String observacoes;
@@ -44,5 +44,11 @@ public class ExercicioCardio extends Exercicio{
                         getTempo() + " hora/minutos. " +
                         "Obs: " + getObservacoes()
         );
+    }
+
+
+    @Override
+    public void exibirDetalhes() {
+        executar();
     }
 }

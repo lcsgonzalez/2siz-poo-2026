@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     static ArrayList<Exercicio> listaExercicios = new ArrayList<>();
+    static ArrayList<Exibivel> itens = new ArrayList<>();
 
     public static void menuCrud(String entidade) {
         while (true) {
@@ -72,16 +73,21 @@ public class Main {
 
         ExercicioMusculacao exercicio = new ExercicioMusculacao(nome, quantidadeSeries, numeroRepeticoes, carga);
         listaExercicios.add(exercicio);
+        itens.add(exercicio);
+        itens.add(new Aluno("Lucas","1234",1234));
         System.out.println("Exercício cadastrado com sucesso!");
     }
 
     public static void visualizarExercicio() {
-        if (listaExercicios.isEmpty()) {
-            System.out.println("Não há exercícios cadastrados!");
-            return;
-        }
-        for (Exercicio exercicio : listaExercicios) {
-            exercicio.executar();
+//        if (listaExercicios.isEmpty()) {
+//            System.out.println("Não há exercícios cadastrados!");
+//            return;
+//        }
+//        for (Exercicio exercicio : listaExercicios) {
+//            exercicio.executar();
+//        }
+        for(Exibivel item : itens){
+            item.exibirDetalhes();
         }
     }
 

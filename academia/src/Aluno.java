@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Aluno {
+public class Aluno implements Exibivel {
     private String nome;
     private String cpf;
     private final int numeroMatricula;
@@ -73,6 +73,17 @@ public class Aluno {
                 ", plano=" + plano +
                 ", treinos=" + treinos +
                 '}';
+    }
+
+    @Override
+    public void exibirDetalhes() {
+        System.out.println("Aluno{" +
+                "nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", numeroMatricula=" + numeroMatricula +
+                ", plano=" + plano +
+                ", treinos=" + treinos +
+                '}');
     }
 }
 

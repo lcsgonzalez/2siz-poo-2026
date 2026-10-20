@@ -1,4 +1,4 @@
-public abstract class Exercicio {
+public abstract class Exercicio implements Exibivel{
     private String nome;
 
     public String getNome() {
